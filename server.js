@@ -10,5 +10,17 @@ app.get('/', (req, res) => {
   res.status(200).end(JSON.stringify(prodotti));
 });
 
+//1: scheda prodotto in base all'id
+app.get('/scheda/:id', (req, res) => {
+    let idProd = req.params.id;
+    let scheda = prodotti.filter((p)=>{return p.id=idProd});
+    if(scheda.length>0){
+        res.status(200).end(JSON.stringify(scheda));
+    }
+    else{
+        res.status(404).end("Prodotto non trovato");
+    }
+});
+
 var server = require('http').createServer(app).listen(8088);
 console.log("Server in ascolto alla porta " + 8088);
