@@ -6,7 +6,7 @@ let prodotti = [];
 
 prodotti = JSON.parse(prodottiRaw);
 
-app.get('/', (req, res) => {
+app.get('/prodotti', (req, res) => {
   res.status(200).end(JSON.stringify(prodotti));
 });
 
@@ -29,6 +29,12 @@ app.get('/categorie', (req, res) => {
 });
 
 //3: elenco prodotti data la categoria
+app.get('/prodotti/:categoria', (req, res) => {
+    let catProd = req.params.categoria;
+    let prodFiltered = prodotti.filter((p)=>{return p.categoria=catProd});
+    res.status(200).end(JSON.stringify(prodotti));
+});
+
 //4: elenco prodotti 
 //5: 10 prodotti + costosi
 //6: aggiornare il prezzo dato un ID
