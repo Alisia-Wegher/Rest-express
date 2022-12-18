@@ -24,9 +24,15 @@ app.get('/scheda/:id', (req, res) => {
 
 //2: elenco categorie
 app.get('/categorie', (req, res) => {
-    let categorie = [new Set(prodotti.map((c)=>c.categoria))];
+    let categorie = [...new Set(prodotti.map((c)=>c.categoria))];
     res.status(200).end(JSON.stringify(categorie));
 });
+
+//3: elenco prodotti data la categoria
+//4: elenco prodotti 
+//5: 10 prodotti + costosi
+//6: aggiornare il prezzo dato un ID
+//7: inserire un nuovo articolo
 
 var server = require('http').createServer(app).listen(8088);
 console.log("Server in ascolto alla porta " + 8088);
