@@ -22,5 +22,11 @@ app.get('/scheda/:id', (req, res) => {
     }
 });
 
+//2: elenco categorie
+app.get('/categorie', (req, res) => {
+    let categorie = [new Set(prodotti.map((c)=>c.categoria))];
+    res.status(200).end(JSON.stringify(categorie));
+});
+
 var server = require('http').createServer(app).listen(8088);
 console.log("Server in ascolto alla porta " + 8088);
